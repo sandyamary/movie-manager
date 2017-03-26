@@ -25,6 +25,8 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var toggleFavoriteButton: UIBarButtonItem!
     @IBOutlet weak var toggleWatchlistButton: UIBarButtonItem!
     
+    @IBOutlet var ratingLabel: UILabel!
+    
     // MARK: Life Cycle
     
     override func viewDidLoad() {
@@ -46,6 +48,13 @@ class MovieDetailViewController: UIViewController {
                 navigationItem.title = "\(movie.title) (\(releaseYear))"
             } else {
                 navigationItem.title = "\(movie.title)"
+            }
+            
+            // set the rating
+            if let rating = movie.rating, let ratingCount = movie.ratingCount, rating != 0.0 {
+                ratingLabel.text = String(rating) + "/10" + " (\(ratingCount))"
+            } else {
+                ratingLabel.text = "No Ratings"
             }
             
             // setting some default UI ...
