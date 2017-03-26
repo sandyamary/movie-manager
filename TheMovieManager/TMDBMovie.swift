@@ -14,6 +14,8 @@ struct TMDBMovie {
     
     let title: String
     let id: Int
+    let rating: Float?
+    let ratingCount: Int?
     let posterPath: String?
     let releaseYear: String?
     
@@ -24,6 +26,9 @@ struct TMDBMovie {
         title = dictionary[TMDBClient.JSONResponseKeys.MovieTitle] as! String
         id = dictionary[TMDBClient.JSONResponseKeys.MovieID] as! Int
         posterPath = dictionary[TMDBClient.JSONResponseKeys.MoviePosterPath] as? String
+        
+        rating = dictionary[TMDBClient.JSONResponseKeys.MovieRating] as! Float
+        ratingCount = dictionary[TMDBClient.JSONResponseKeys.MovieRatingCount] as! Int
         
         if let releaseDateString = dictionary[TMDBClient.JSONResponseKeys.MovieReleaseDate] as? String, releaseDateString.isEmpty == false {
             releaseYear = releaseDateString.substring(to: releaseDateString.characters.index(releaseDateString.startIndex, offsetBy: 4))
